@@ -24,6 +24,7 @@ class Target():
         self.process_name     = None
         self.process_pid      = None
         self.remote_frida     = False
+        self.frida_server       = '127.0.0.1'
         self.frida_port       = 27042
         self.modules          = None        # Modules which are loaded in the process
         self.modules_to_watch = None        # Modules which where given in the config file
@@ -42,13 +43,15 @@ class Target():
             self.process_pid = target_dict["process_pid"]
         if "remote_frida" in target_dict:
             self.remote_frida = target_dict["remote_frida"]
+        if "frida_server" in target_dict:
+            self.frida_server = target_dict["frida_server"]
         if "frida_port" in target_dict:
             self.frida_port = target_dict["frida_port"]
         if "modules" in target_dict:
             self.modules_to_watch = target_dict["modules"]
 
         if self.remote_frida:
-            self.frida_instance = frida.get_device_manager().add_remote_device('%s:%d' % ('localhost', self.frida_port))
+            self.frida_instance = frida.get_device_manager().add_remote_device('%s:%d' % (self.frida_server, self.frida_port))
         else:
             self.frida_instance = frida
 
