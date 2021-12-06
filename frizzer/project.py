@@ -41,6 +41,7 @@ function        = 0x123456       # Function for which the coverage will be trace
                                  # or a symbol name (string, e.g. "handleClient")
 remote_frida    = false          # Connect to a "remote" frida server (needs ssh portforwarding of the
                                  # frida server port to localhost)
+frida_server    = "127.0.0.1"    # frida server address(default: 127.0.0.1)
 frida_port      = 27042          # port for the remote frida connection. frizzer will connect to localhost:$PORT
 
 # 'modules' is a filter list. Coverage will be traced only for modules / shared
